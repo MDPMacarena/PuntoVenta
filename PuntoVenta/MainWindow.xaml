@@ -4,9 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PuntoVenta"
+        xmlns:vm="clr-namespace:PuntoVenta.Views"
+        xmlns:pr="clr-namespace:PuntoVenta.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Background="#F5CCA0">
+    <Window.DataContext>
+        <pr:ProductoViewModel></pr:ProductoViewModel>
+    </Window.DataContext>
     <Grid>
-
+        <vm:ListaComidaview></vm:ListaComidaview>
     </Grid>
 </Window>
+
