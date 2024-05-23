@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PuntoVenta.Views"
+             xmlns:local="clr-namespace:PuntoVenta.Views" xmlns:viewmodels="clr-namespace:PuntoVenta.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:ProductoViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="#50000000">
     <Border BorderBrush="Black"
@@ -18,25 +18,27 @@
                 Text="Datos a ingresar del producto"/>
             <DockPanel Margin=" 0 0 0 20">
                 <Label Content="Nombre:"/>
-                <TextBox/>
+                <TextBox Text="{Binding Producto.Nombre }"/>
             </DockPanel >
             <DockPanel Margin=" 0 0 0 20">
                 <Label Content="Descripciòn:"/>
-                <TextBox/>
+                <TextBox Text="{Binding  Producto.Descripcion}"/>
             </DockPanel>
             <DockPanel Margin=" 0 0 0 20">
                 <Label Content="Precio:"/>
-                <TextBox/>
+                <TextBox Text="{Binding Producto.Precio}"/>
             </DockPanel>
             <DockPanel Margin=" 0 0 0 20">
                 <Label Content="URL Imagen:"/>
-                <TextBox/>
+                <TextBox Text="{Binding Producto.UrlImagen}"/>
             </DockPanel>
-            <TextBlock Foreground="Red" HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding Error}"
+                Foreground="Red" 
+                HorizontalAlignment="Center"/>
             <WrapPanel
                        Margin="0 20 0 0"
                        HorizontalAlignment="Center">
-                <Button>
+                <Button Command="{Binding EditarCommand}">
                     <Image Source="https://cdn-icons-png.flaticon.com/512/4074/4074170.png"/>
                 </Button>
                 <Button Command="{Binding CancelarCommand}">

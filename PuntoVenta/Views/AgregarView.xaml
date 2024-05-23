@@ -18,28 +18,30 @@
                 Text="Datos a ingresar del producto"/>
             <DockPanel Margin=" 0 0 0 20">
                 <Label Content="Nombre:"/>
-                <TextBox Text="{Binding Nombre }"/>
+                <TextBox Text="{Binding Producto.Nombre }"/>
             </DockPanel >
             <DockPanel Margin=" 0 0 0 20">
                 <Label Content="Descripciòn:"/>
-                <TextBox Text="{Binding  Descripcion}"/>
+                <TextBox Text="{Binding  Producto.Descripcion}"/>
             </DockPanel>
             <DockPanel Margin=" 0 0 0 20">
                 <Label Content="Precio:"/>
-                <TextBox/>
+                <TextBox Text="{Binding Producto.Precio}"/>
             </DockPanel>
             <DockPanel Margin=" 0 0 0 20">
                 <Label Content="URL Imagen:"/>
-                <TextBox/>
+                <TextBox Text="{Binding Producto.UrlImagen}"/>
             </DockPanel>
-            <TextBlock Foreground="Red" HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding Error}"
+                Foreground="Red" 
+                HorizontalAlignment="Center"/>
             <WrapPanel
                        Margin="0 20 0 0"
                        HorizontalAlignment="Center">
-                 <Button>
+                 <Button Command="{Binding AgregarCommand}">
                     <Image Source="https://cdn-icons-png.flaticon.com/512/4074/4074170.png"/>
                  </Button>
-                 <Button Command="{Binding CancelarCommand}">
+                <Button Command="{Binding CancelarCommand}">
                     <Image Source="https://cdn-icons-png.flaticon.com/512/2168/2168305.png"/>
                  </Button>
 </WrapPanel>

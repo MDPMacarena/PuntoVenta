@@ -13,7 +13,7 @@ using System.Windows.Input;
 namespace PuntoVenta.ViewModels
 {
     //paso uno
-    public enum Ventanas {ver,Agregar,Editar,Eliminar}
+    public enum Ventanas {ver,Agregar,Editar,Eliminar,Usuarios}
    public class ProductoViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;               
@@ -22,16 +22,18 @@ namespace PuntoVenta.ViewModels
         //Objeto que vamos a vincular
         public Productos? Producto { get; set; }
         //Vistas
-        public Ventanas Vista { get; set; } = Ventanas.ver;
+        public Ventanas? Vista { get; set; } = null;
         //Error
         public string Error { get; set; } = "";
         //Comandos
+        public ICommand CancelarCommand { get; set; }
         public ICommand VerAgregarCommand { get; set; }
         public ICommand AgregarCommand { get; set; }
         public ICommand VerEditarCommand { get; set; }
         public ICommand EditarCommand { get; set; }
         public ICommand VerEliminarCommand { get; set; }
         public ICommand EliminarCommand { get; set; }
+        public ICommand CambiarVistaCommand { get; set; }
         //Instanciar el repocitorio
         ProductoRepository productorepos = new ();
         //Constructor
@@ -44,8 +46,10 @@ namespace PuntoVenta.ViewModels
             EditarCommand=new RelayCommand(Editar);
             VerEliminarCommand=new RelayCommand(VerEliminar);
             EliminarCommand=new RelayCommand(Eliminar);
+            CambiarVistaCommand = new RelayCommand<Ventanas>(CambiarVista);
+            CancelarCommand=new RelayCommand(Cancelar);
         }
-        //Metodos Agregar Eliminar Editar verAgregar vereliminar vereditar cancelar
+        //Metodos Agregar Eliminar Editar verAgregar vereliminar vereditar cancelar cambirvista
         void Cancelar ()
         {
             Producto = null;
@@ -118,9 +122,14 @@ namespace PuntoVenta.ViewModels
             }
             Actualizar();
         }
+        void CambiarVista (Ventanas vista)
+        {
+            Vista=vista;
+            Actualizar();
+        }
         void Actualizar ()
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));
         }
-    }
+   }
 }

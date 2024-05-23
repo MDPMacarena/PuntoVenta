@@ -11,8 +11,83 @@
     <Window.DataContext>
         <pr:ProductoViewModel></pr:ProductoViewModel>
     </Window.DataContext>
+    <DockPanel Margin="10">
+        <TextBlock DockPanel.Dock="Top" 
+                   HorizontalAlignment="Center"
+                   FontSize="30"
+            Text="Hamburgesas"/>
+        <StackPanel VerticalAlignment="Center">
+            <Button Margin="10" Command="{Binding CambiarVistaCommand}" CommandParameter="{x:Static pr:Ventanas.Usuarios}">
+                <Image Source="https://cdn-icons-png.flaticon.com/512/456/456212.png"/>
+            </Button>
+            <Button Margin="10"
+                    Command="{Binding CambiarVistaCommand}" 
+                    CommandParameter="{x:Static pr:Ventanas.ver}">
+                <Image Source="https://cdn-icons-png.flaticon.com/512/4074/4074170.png"/>
+            </Button>
+        </StackPanel>
     <Grid>
-        <vm:ListaComidaview></vm:ListaComidaview>
+        <vm:ListaComidaview>
+                <vm:ListaComidaview.Style>
+                    <Style TargetType="UserControl">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                                <DataTrigger Binding="{Binding Vista}" Value="{x:Static pr:Ventanas.ver}">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                    </Style>
+                </vm:ListaComidaview.Style>
+        </vm:ListaComidaview>
+        <vm:ListaUsuarios>
+                <vm:ListaUsuarios.Style>
+                    <Style TargetType="UserControl">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Vista}" Value="{x:Static pr:Ventanas.Usuarios}">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </vm:ListaUsuarios.Style>
+        </vm:ListaUsuarios>
+        <vm:AgregarView>
+                <vm:AgregarView.Style>
+                    <Style TargetType="UserControl">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Vista}" Value="{x:Static pr:Ventanas.Agregar}">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </vm:AgregarView.Style>
+            </vm:AgregarView>
+        <vm:EditarView>
+                <vm:EditarView.Style>
+                    <Style TargetType="UserControl">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Vista}" Value="{x:Static pr:Ventanas.Editar}">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </vm:EditarView.Style>
+            </vm:EditarView>
+        <vm:EliminarView>
+                <vm:EliminarView.Style>
+                    <Style TargetType="UserControl">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Vista}" Value="{x:Static pr:Ventanas.Eliminar}">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </vm:EliminarView.Style>
+            </vm:EliminarView>
     </Grid>
+    </DockPanel>
 </Window>
 

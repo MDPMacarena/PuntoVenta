@@ -1,4 +1,5 @@
-﻿using PuntoVenta.Models;
+﻿using Microsoft.EntityFrameworkCore.Update.Internal;
+using PuntoVenta.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,52 @@ namespace PuntoVenta.Repositories
         {
             context.Add(usuario);
             context.SaveChanges();
+        }
+        //DELETE
+        void Delete(Usuarios usuario)
+        {
+            context.Remove(usuario);
+            context.SaveChanges();
+        }
+        //UPDATE
+        void Update(Usuarios usuarioEd)
+        {
+            if (usuarioEd != null)
+            {
+                var p = context.Usuarios.FirstOrDefault(x => x.Id == usuarioEd.Id);
+                if (p != null)
+                {
+                    p.Nombre = usuarioEd.Nombre;
+                    p.Rol=usuarioEd.Rol;
+                    p.Password=usuarioEd.Password;
+                    p.Usuario=usuarioEd.Usuario;
+                    context.SaveChanges();
+                }
+            }
+        }
+        public bool Validar (Usuarios p, out List<string> Errores)
+        {
+            Errores = new List<string>();
+            if (p!=null)
+            {
+                if (string.IsNullOrEmpty(p.Usuario))
+                {
+                    Errores.Add("Escriba el usuario");
+                }
+                if (string.IsNullOrEmpty(p.Rol))
+                {
+                    Errores.Add("Escriba el rol del usario");
+                }
+                if (string.IsNullOrEmpty(p.Nombre))
+                {
+                    Errores.Add("Escriba un nombre");
+                }
+                if (!string.IsNullOrEmpty(p.Password))
+                {
+                    Errores.Add("Escriba una password");
+                }
+            }
+            return Errores.Count == 0;
         }
     }
 }

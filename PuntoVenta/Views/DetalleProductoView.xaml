@@ -9,10 +9,10 @@
     <StackPanel>
         <TextBlock Text="{Binding Nombre}" Margin="10" />
         <Image  Source="{Binding UrlImagen}"
-                Width="300" 
+                Width="100"
                 Height="100"
-                Stretch="UniformToFill"/>
-        <TextBlock Text="{Binding Precio}"/>
+                Stretch="Uniform"/>
+        <TextBlock Text="{Binding Precio}" HorizontalAlignment="Center"/>
         <!--<Button Command="{Binding CancelarCommand}" DockPanel.Dock="Bottom" HorizontalAlignment="Right"/>-->
     </StackPanel>
 </UserControl>
