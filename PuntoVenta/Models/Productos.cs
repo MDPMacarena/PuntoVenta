@@ -14,4 +14,6 @@ public partial class Productos
     public decimal Precio { get; set; }
 
     public string? UrlImagen { get; set; }
+
+    public virtual ICollection<Detalleventa> Detalleventa { get; set; } = new List<Detalleventa>();
 }

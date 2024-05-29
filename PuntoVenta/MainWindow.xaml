@@ -15,15 +15,15 @@
         <TextBlock DockPanel.Dock="Top" 
                    HorizontalAlignment="Center"
                    FontSize="30"
-            Text="Hamburgesas"/>
+            Text="Hamburguesas"/>
         <StackPanel VerticalAlignment="Center">
             <Button Margin="10" Command="{Binding CambiarVistaCommand}" CommandParameter="{x:Static pr:Ventanas.Usuarios}">
-                <Image Source="https://cdn-icons-png.flaticon.com/512/456/456212.png"/>
+                <Image Source="https://cdn-icons-png.flaticon.com/512/456/456283.png"/>
             </Button>
             <Button Margin="10"
                     Command="{Binding CambiarVistaCommand}" 
                     CommandParameter="{x:Static pr:Ventanas.ver}">
-                <Image Source="https://cdn-icons-png.flaticon.com/512/4074/4074170.png"/>
+                <Image Source="https://images.vexels.com/media/users/3/212709/isolated/preview/a123f8205d1e564ef7191b32da7715a7-icono-de-trazo-de-pincel-hamburguesa-amarillo.png"/>
             </Button>
         </StackPanel>
     <Grid>

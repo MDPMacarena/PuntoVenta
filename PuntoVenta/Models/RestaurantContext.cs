@@ -16,9 +16,13 @@ public partial class RestaurantContext : DbContext
     {
     }
 
+    public virtual DbSet<Detalleventa> Detalleventa { get; set; }
+
     public virtual DbSet<Productos> Productos { get; set; }
 
     public virtual DbSet<Usuarios> Usuarios { get; set; }
+
+    public virtual DbSet<Venta> Venta { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -29,6 +33,36 @@ public partial class RestaurantContext : DbContext
         modelBuilder
             .UseCollation("utf8mb4_0900_ai_ci")
             .HasCharSet("utf8mb4");
+
+        modelBuilder.Entity<Detalleventa>(entity =>
+        {
+            entity.HasKey(e => e.IdDetalle).HasName("PRIMARY");
+
+            entity.ToTable("detalleventa");
+
+            entity.HasIndex(e => e.IdProducto, "fk_idProducto_idx");
+
+            entity.HasIndex(e => e.IdVenta, "fk_idventa_idx");
+
+            entity.Property(e => e.IdDetalle)
+                .ValueGeneratedNever()
+                .HasColumnName("idDetalle");
+            entity.Property(e => e.Cantidad).HasColumnName("cantidad");
+            entity.Property(e => e.IdProducto).HasColumnName("idProducto");
+            entity.Property(e => e.PrecioUnitario)
+                .HasPrecision(8, 2)
+                .HasColumnName("precioUnitario");
+
+            entity.HasOne(d => d.IdProductoNavigation).WithMany(p => p.Detalleventa)
+                .HasForeignKey(d => d.IdProducto)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_idProducto");
+
+            entity.HasOne(d => d.IdVentaNavigation).WithMany(p => p.Detalleventa)
+                .HasForeignKey(d => d.IdVenta)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_idventa");
+        });
 
         modelBuilder.Entity<Productos>(entity =>
         {
@@ -66,6 +100,21 @@ public partial class RestaurantContext : DbContext
                 .HasColumnName("password");
             entity.Property(e => e.Rol).HasMaxLength(45);
             entity.Property(e => e.Usuario).HasMaxLength(45);
+        });
+
+        modelBuilder.Entity<Venta>(entity =>
+        {
+            entity.HasKey(e => e.IdVenta).HasName("PRIMARY");
+
+            entity.ToTable("venta");
+
+            entity.Property(e => e.IdVenta).HasColumnName("idVenta");
+            entity.Property(e => e.FechaHora)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .HasColumnType("datetime");
+            entity.Property(e => e.Total)
+                .HasPrecision(8, 2)
+                .HasColumnName("total");
         });
 
         OnModelCreatingPartial(modelBuilder);

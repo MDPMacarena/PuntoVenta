@@ -10,11 +10,13 @@
         <Button
             Margin="10"
             DockPanel.Dock="Bottom" HorizontalAlignment="Right">
-            <Image Source="https://cdn-icons-png.flaticon.com/512/72/72648.png"/>
+            <Image Source="https://cdn-icons-png.flaticon.com/512/456/456283.png"/>
         </Button>
-        <DataGrid AutoGenerateColumns="False" Margin="10">
-            <DataGrid.Columns>
-                <DataGridTextColumn Width=".4*" Header="Nombre"/>
+        <DataGrid Background="#B0C5A4" 
+                  AutoGenerateColumns="False" 
+                  Margin="10">
+            <DataGrid.Columns >
+                <DataGridTextColumn  Width=".4*" Header="Nombre"/>
                 <DataGridTextColumn Width=".3*" Header="Usuario"/>
                 <DataGridTextColumn Width=".3*" Header="Rol"/>
             </DataGrid.Columns>

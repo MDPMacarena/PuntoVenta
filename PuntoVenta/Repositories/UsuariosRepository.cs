@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+    using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace PuntoVenta.Repositories
@@ -21,19 +22,19 @@ namespace PuntoVenta.Repositories
             return context.Usuarios.FirstOrDefault(x => x.Id == id);
         }
         //CREATE
-        void Add(Usuarios usuario)
+        public void Add(Usuarios usuario)
         {
             context.Add(usuario);
             context.SaveChanges();
         }
         //DELETE
-        void Delete(Usuarios usuario)
+        public void Delete(Usuarios usuario)
         {
             context.Remove(usuario);
             context.SaveChanges();
         }
         //UPDATE
-        void Update(Usuarios usuarioEd)
+        public void Update(Usuarios usuarioEd)
         {
             if (usuarioEd != null)
             {
