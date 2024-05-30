@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="PuntoVenta.Views.VentaView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PuntoVenta.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="#70000000">
+    <DockPanel Margin="5" Background="#B0C5A4">
+        <DockPanel Margin=" 10 15 10 15" 
+                   DockPanel.Dock="Top">
+            <TextBlock FontSize="40" HorizontalAlignment="Center" Margin="200 0 0 0" Text="Punto Venta"/>
+            <Button  HorizontalAlignment="Right" >
+                <Image Source="https://cdn.icon-icons.com/icons2/943/PNG/512/shoppaymentorderbuy-27_icon-icons.com_73879.png"/>
+            </Button>
+        </DockPanel>
+       
+        <ListBox DockPanel.Dock="Right"
+                 Width="200"
+                 Margin="10 0 10 10" BorderBrush="Black">
+            
+        </ListBox>
+        <StackPanel>
+            <DataGrid BorderBrush="Black" Margin="10 0 0 0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Producto"
+                                        Width=".4*"/>
+                    <DataGridTextColumn Header="Precio"
+                                        Width=".3*"/>
+                    <DataGridTextColumn Header="SubTotal"
+                                        Width=".3*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <WrapPanel
+                HorizontalAlignment="Center">
+                <TextBlock Text="Total:"
+                FontSize="20"/>
+                <TextBlock FontSize="20"/>
+            </WrapPanel>
+            <DockPanel HorizontalAlignment="Right">
+                <Button>
+                    <Image Source="https://png.pngtree.com/png-clipart/20230418/original/pngtree-payment-receipt-line-icon-png-image_9065099.png"/>
+                </Button>
+            </DockPanel>
+        </StackPanel>
+    </DockPanel>
+</UserControl>

@@ -25,6 +25,9 @@
                     CommandParameter="{x:Static pr:Ventanas.ver}">
                 <Image Source="https://images.vexels.com/media/users/3/212709/isolated/preview/a123f8205d1e564ef7191b32da7715a7-icono-de-trazo-de-pincel-hamburguesa-amarillo.png"/>
             </Button>
+            <Button >
+                <Image Source="https://cdn-icons-png.flaticon.com/512/3028/3028784.png"/>
+            </Button>
         </StackPanel>
     <Grid>
         <vm:ListaComidaview>
@@ -51,6 +54,18 @@
                     </Style>
                 </vm:ListaUsuarios.Style>
         </vm:ListaUsuarios>
+            <vm:VentaView>
+                <vm:VentaView.Style>
+                    <Style TargetType="UserControl">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <!--<DataTrigger Binding="{Binding Vista}" Value="{x:Static pr:Ventanas.Venta}">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>-->
+                        </Style.Triggers>
+                    </Style>
+                </vm:VentaView.Style>
+            </vm:VentaView>
         <vm:AgregarView>
                 <vm:AgregarView.Style>
                     <Style TargetType="UserControl">

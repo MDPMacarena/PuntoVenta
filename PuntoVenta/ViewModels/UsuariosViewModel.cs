@@ -1,53 +1,60 @@
-﻿using PuntoVenta.Models;
+﻿using CommunityToolkit.Mvvm.Input;
+using PuntoVenta.Models;
 using PuntoVenta.Repositories;
 using System;
-using System.Collections.Generic;
+//using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Windows.Input;
+//using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace PuntoVenta.ViewModels
 {
-    //public enum Ventanas { ver, Agregar, Editar, Eliminar, Usuarios }
-   public class UsuariosViewModel : INotifyPropertyChanged
+    public enum Ventanasus { ver, Agregarus, Editarus, Eliminarus, Usuariosus }
+    public class UsuariosViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
         public ObservableCollection<Usuarios> ListaUsuarios { get; set; }
+        public string Error { get; set; } = "";
         public Usuarios? Usuariosbb { get; set; }
-        public Ventanas? Vista { get; set; } = null;
+        public Ventanasus? Vista { get; set; } = null;
+        public ICommand VerAgregarusCommand {  get; set; }
         UsuariosRepository Usuariosrepo=new ();
         public UsuariosViewModel()
         {
             ListaUsuarios = new ObservableCollection<Usuarios>(Usuariosrepo.GetAll());
+            VerAgregarusCommand = new RelayCommand(VerAgregarus);
+
         }
-        void Cancelar()
+       public  void Cancelar()
         {
             Usuariosbb= null;
-            Vista = Ventanas.Usuarios;
+            Vista = Ventanasus.Usuariosus;
             Actualizar();
         }
-        void VerAgregar ()
+       public  void VerAgregarus ()
         {
             Usuariosbb=new Usuarios();
-            Vista = Ventanas.Agregar;
+            Error = "";
+            Vista = Ventanasus.Agregarus;
             Actualizar();
         }
-        void Agregar()
+       public  void Agregar()
         {
             if (Usuariosbb != null)
             {
                 if (Usuariosrepo.Validar(Usuariosbb,out List<string> Errores))
                 {
                     Usuariosrepo.Add(Usuariosbb);
-                    Vista = Ventanas.Usuarios;
+                    Vista = Ventanasus.Usuariosus;
                     ListaUsuarios = new ObservableCollection<Usuarios>(Usuariosrepo.GetAll());
                 }
             }
         }
-        void Actualizar()
+       public void Actualizar()
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));
         }
